@@ -8,6 +8,7 @@ import { BatimentLayoutComponent } from './batiment-layout/batiment-layout.compo
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     NoopAnimationsModule,
     MatTabsModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

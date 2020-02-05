@@ -1,13 +1,16 @@
 <div style="padding: 25px">
-  <div style="width: 500px">
+  <div style="width: 475px;display: inline-block;vertical-align: middle">
     <mat-tab-group>
       <mat-tab *ngFor="let batiment of batimentSwitch.batiments">
         <ng-template mat-tab-label>
           {{ batiment.name}}
         </ng-template>
+        <div style="text-align: center">
+          <span style="text-align: center;top: 20px;position: relative;">Choissiez les plans a creer en fonctions du niveau</span>
+        </div>
             <div *ngFor="let propertyLine of getPropertyLineOf(batiment), let i = index">
               <div style="width: 90px;display: inline-block">
-                <span style="padding: 10px;display: inline-block;width: auto;color: #333;">{{ propertyLine.name }}</span>
+                <span style="padding: 10px;display: inline-block;width: auto;">{{ propertyLine.name }}</span>
               </div>
               <div style="display: inline-block;width: calc(100% - 90px)">
                 <div *ngFor="let checkLine of getPropertyLineCheckBoxOf(propertyLine)" style="display: inline-block;padding: 10px;width: auto">
@@ -18,8 +21,87 @@
                 </div>
               </div>
             </div>
-        <p>...</p>
       </mat-tab>
     </mat-tab-group>
+  </div>
+  <div style="width: calc(100% - 590px);display: inline-block;vertical-align: top;padding: 50px">
+    <h1>Liste plan</h1>
+    <table mat-table [dataSource]="plans">
+      <ng-container matColumnDef="diffused">
+        <th mat-header-cell *matHeaderCellDef> diffused </th>
+        <td mat-cell *matCellDef="let element"> {{element.diffused}} </td>
+      </ng-container>
+      <ng-container matColumnDef="zone">
+        <th mat-header-cell *matHeaderCellDef> zone </th>
+        <td mat-cell *matCellDef="let element"> {{element.zone}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nivTitre1">
+        <th mat-header-cell *matHeaderCellDef> nivTitre1 </th>
+        <td mat-cell *matCellDef="let element"> {{element.nivTitre1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="nivTitre2">
+        <th mat-header-cell *matHeaderCellDef> nivTitre2 </th>
+        <td mat-cell *matCellDef="let element"> {{element.nivTitre2}} </td>
+      </ng-container>
+      <ng-container matColumnDef="natTitre">
+        <th mat-header-cell *matHeaderCellDef> natTitre </th>
+        <td mat-cell *matCellDef="let element"> {{element.natTitre}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dateDiffPrevesionel">
+        <th mat-header-cell *matHeaderCellDef> dateDiffPrevesionel </th>
+        <td mat-cell *matCellDef="let element"> {{ toHumanDate(element.dateDiffPrevesionel)}} </td>
+      </ng-container>
+      <ng-container matColumnDef="dateLastIndice">
+        <th mat-header-cell *matHeaderCellDef> dateLastIndice </th>
+        <td mat-cell *matCellDef="let element"> {{ toHumanDate(element.dateLastIndice) }} </td>
+      </ng-container>
+      <ng-container matColumnDef="projet">
+        <th mat-header-cell *matHeaderCellDef> projet </th>
+        <td mat-cell *matCellDef="let element"> {{element.projet}} </td>
+      </ng-container>
+      <ng-container matColumnDef="phase">
+        <th mat-header-cell *matHeaderCellDef> phase </th>
+        <td mat-cell *matCellDef="let element"> {{element.phase}} </td>
+      </ng-container>
+      <ng-container matColumnDef="emetteur">
+        <th mat-header-cell *matHeaderCellDef> emetteur </th>
+        <td mat-cell *matCellDef="let element"> {{element.emetteur}} </td>
+      </ng-container>
+      <ng-container matColumnDef="lot">
+        <th mat-header-cell *matHeaderCellDef> lot </th>
+        <td mat-cell *matCellDef="let element"> {{element.lot}} </td>
+      </ng-container>
+      <ng-container matColumnDef="lnv1">
+        <th mat-header-cell *matHeaderCellDef> lnv1 </th>
+        <td mat-cell *matCellDef="let element"> {{element.lnv1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+      <ng-container matColumnDef="bat">
+        <th mat-header-cell *matHeaderCellDef> Bat </th>
+        <td mat-cell *matCellDef="let element"> {{element.bat}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> number </th>
+        <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+      </ng-container>
+      <ng-container matColumnDef="indice">
+        <th mat-header-cell *matHeaderCellDef> indice </th>
+        <td mat-cell *matCellDef="let element"> {{element.indice}} </td>
+      </ng-container>
+      <ng-container matColumnDef="toBeDifused">
+        <th mat-header-cell *matHeaderCellDef> toBeDifused </th>
+        <td mat-cell *matCellDef="let element">
+          <mat-checkbox (change)="onPlanCheckDiffusionChange(element)" [checked]="element.toBeDifused" style="position: relative"></mat-checkbox>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedPlancolumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedPlancolumns;"></tr>
+    </table>
   </div>
 </div>
