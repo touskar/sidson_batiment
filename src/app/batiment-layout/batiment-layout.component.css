@@ -1,0 +1,8 @@
+
+
+.item-rotate{
+  transform: rotate(-50deg);
+  display: inline-block;
+  font-size: 8px;
+  position: absolute;
+}

@@ -1,0 +1,25 @@
+<div style="padding: 25px">
+  <div style="width: 500px">
+    <mat-tab-group>
+      <mat-tab *ngFor="let batiment of batimentSwitch.batiments">
+        <ng-template mat-tab-label>
+          {{ batiment.name}}
+        </ng-template>
+            <div *ngFor="let propertyLine of getPropertyLineOf(batiment), let i = index">
+              <div style="width: 90px;display: inline-block">
+                <span style="padding: 10px;display: inline-block;width: auto;color: #333;">{{ propertyLine.name }}</span>
+              </div>
+              <div style="display: inline-block;width: calc(100% - 90px)">
+                <div *ngFor="let checkLine of getPropertyLineCheckBoxOf(propertyLine)" style="display: inline-block;padding: 10px;width: auto">
+                  <div *ngIf="i === 0" style="position: relative;height: 100px;top: 50px">
+                    <span class="item-rotate" > {{ checkLine.name }} </span>
+                  </div>
+                  <mat-checkbox (change)="onCheckStateChange(checkLine)" [checked]="checkLine.state" style="position: relative"></mat-checkbox>
+                </div>
+              </div>
+            </div>
+        <p>...</p>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
